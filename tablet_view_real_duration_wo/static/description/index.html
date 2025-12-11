@@ -1,0 +1,203 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan" style="color:#875A7B;">MRP Workorder Real-Time Duration</h2>
+        <h3 class="oe_slogan">Keep your work order timers running accurately in real-time, even when you close the tablet view to check other tasks.</h3>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">The Problem</h2>
+            <h3 class="oe_slogan">Timer Stops When You Close Tablet View</h3>
+        </div>
+        <div class="oe_span12">
+            <p class="oe_mt32" style="font-size: 18px; text-align: center;">
+                In standard Odoo, when an operator opens tablet view to start a work order, 
+                then closes the tablet view to check something else, the timer automatically pauses. 
+                This leads to <strong>inaccurate time tracking</strong> and <strong>productivity measurement issues</strong>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">The Solution</h2>
+            <h3 class="oe_slogan">Timer Keeps Running Until You Click Pause</h3>
+        </div>
+        <div class="oe_span12">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="screenshot_1.png" alt="Real Duration Tracking">
+            </div>
+        </div>
+        <div class="oe_span12">
+            <p class="oe_mt32" style="font-size: 18px; text-align: center;">
+                This module ensures your production timers keep running accurately in real-time, 
+                even when the tablet view is closed. Operators can <strong>freely multitask</strong> 
+                without losing track of work time!
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">Key Features</h2>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="cover.png" alt="Tablet View with Running Timer">
+            </div>
+        </div>
+        <div class="oe_span6">
+            <div style="padding: 20px;">
+                <h3 style="color:#875A7B;"><i class="fa fa-check-circle"></i> Real-Time Duration Calculation</h3>
+                <p style="font-size: 16px;">Duration continues to update in real-time even when tablet view is closed</p>
+                
+                <h3 style="color:#875A7B; margin-top: 20px;"><i class="fa fa-check-circle"></i> Accurate Time Tracking</h3>
+                <p style="font-size: 16px;">Timer only stops when operator manually clicks Pause or Done button</p>
+                
+                <h3 style="color:#875A7B; margin-top: 20px;"><i class="fa fa-check-circle"></i> No Configuration Needed</h3>
+                <p style="font-size: 16px;">Works immediately after installation with zero configuration required</p>
+                
+                <h3 style="color:#875A7B; margin-top: 20px;"><i class="fa fa-check-circle"></i> Smart Auto-Update</h3>
+                <p style="font-size: 16px;">Uses computed fields with @api.depends for accurate automatic updates</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">How It Works</h2>
+        </div>
+        <div class="oe_span12">
+            <div class="oe_row_img oe_centered">
+                <img src="screenshot_2.png" alt="Work Order List" style="max-width: 100%;">
+            </div>
+        </div>
+        <div class="oe_span12">
+            <div style="padding: 30px; font-size: 16px;">
+                <ol style="line-height: 2;">
+                    <li><strong>Open Tablet View</strong> - Start your work order from the tablet interface</li>
+                    <li><strong>Click Start</strong> - Begin the timer for your operation</li>
+                    <li><strong>Close Tablet View</strong> - Timer keeps running in the background ✓</li>
+                    <li><strong>Check Other Tasks</strong> - Freely navigate Odoo while timer continues</li>
+                    <li><strong>Reopen Work Order</strong> - See updated real-time duration</li>
+                    <li><strong>Click Pause/Done</strong> - Manually stop the timer when finished</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">Technical Details</h2>
+        </div>
+        <div class="oe_span6">
+            <h3 style="color:#875A7B;">Models Modified</h3>
+            <ul style="font-size: 16px; line-height: 1.8;">
+                <li><code>mrp.workorder</code> - Override <code>_compute_duration()</code></li>
+                <li><code>mrp.workcenter.productivity</code> - Real-time timer calculation</li>
+            </ul>
+            
+            <h3 style="color:#875A7B; margin-top: 30px;">New Fields</h3>
+            <ul style="font-size: 16px; line-height: 1.8;">
+                <li><code>is_user_working</code> (Boolean) - Track working status</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <h3 style="color:#875A7B;">Methods Override</h3>
+            <ul style="font-size: 16px; line-height: 1.8;">
+                <li><code>button_start()</code> - Set is_user_working = True</li>
+                <li><code>button_pending()</code> - Manual pause (is_user_working = False)</li>
+                <li><code>button_finish()</code> - Complete work order</li>
+                <li><code>action_back()</code> - Prevent auto-pause on view close</li>
+                <li><code>_compute_duration()</code> - Real-time calculation with datetime.now()</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">Benefits for Your Business</h2>
+        </div>
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <i class="fa fa-clock-o fa-4x" style="color:#875A7B;"></i>
+                <h3 style="color:#875A7B; margin-top: 20px;">Accurate Time Tracking</h3>
+                <p style="font-size: 16px;">Get precise production time data for better planning and costing</p>
+            </div>
+        </div>
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <i class="fa fa-users fa-4x" style="color:#875A7B;"></i>
+                <h3 style="color:#875A7B; margin-top: 20px;">Improved Productivity</h3>
+                <p style="font-size: 16px;">Operators can multitask freely without worrying about timers</p>
+            </div>
+        </div>
+        <div class="oe_span4">
+            <div style="text-align: center; padding: 20px;">
+                <i class="fa fa-line-chart fa-4x" style="color:#875A7B;"></i>
+                <h3 style="color:#875A7B; margin-top: 20px;">Better Analytics</h3>
+                <p style="font-size: 16px;">Real production data leads to better performance analysis</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#875A7B;">Installation & Support</h2>
+        </div>
+        <div class="oe_span6">
+            <h3 style="color:#875A7B;">Easy Installation</h3>
+            <p style="font-size: 16px; line-height: 1.8;">
+                1. Install the module from Apps menu<br>
+                2. No configuration required<br>
+                3. Start using immediately!
+            </p>
+            
+            <h3 style="color:#875A7B; margin-top: 30px;">Dependencies</h3>
+            <p style="font-size: 16px;">
+                • Manufacturing (mrp)<br>
+                • Work Order Management (mrp_workorder)
+            </p>
+        </div>
+        <div class="oe_span6">
+            <h3 style="color:#875A7B;">Get Support</h3>
+            <p style="font-size: 16px; line-height: 1.8;">
+                Need help or have questions?<br>
+                <a href="https://github.com/mellisafr/odoo16-tablet_view_real_time_wo/issues" target="_blank">
+                    <i class="fa fa-github"></i> Create an issue on GitHub
+                </a>
+            </p>
+            
+            <h3 style="color:#875A7B; margin-top: 30px;">About the Author</h3>
+            <p style="font-size: 16px;">
+                Developed by <strong>Mellisa FR</strong><br>
+                <a href="https://www.linkedin.com/in/mellisafr/" target="_blank">
+                    <i class="fa fa-linkedin"></i> Connect on LinkedIn
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" style="text-align: center; padding: 40px;">
+            <h2 class="oe_slogan" style="color:#875A7B;">Ready to improve your manufacturing time tracking?</h2>
+            <h3 class="oe_slogan">Install now and experience real-time duration tracking!</h3>
+        </div>
+    </div>
+</section>
