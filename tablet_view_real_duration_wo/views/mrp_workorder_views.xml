@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit tree view untuk add is_user_working field -->
+    <record id="mrp_production_workorder_tree_editable_view_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.tree.editable.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <!-- Add hidden field is_user_working untuk tracking -->
+            <xpath expr="//field[@name='duration']" position="before">
+                <field name="is_user_working" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit tablet view untuk add is_user_working field -->
+    <record id="mrp_workorder_view_form_tablet_inherit" model="ir.ui.view">
+        <field name="name">mrp.workorder.view.form.tablet.inherit.real.time</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp_workorder.mrp_workorder_view_form_tablet"/>
+        <field name="arch" type="xml">
+            <field name="duration" position="after">
+                <field name="is_user_working" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Inherit form view untuk add is_user_working field -->
+    <record id="mrp_production_workorder_form_view_inherit_custom" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.form.inherit.custom</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <!-- Add hidden field is_user_working untuk tracking -->
+            <xpath expr="//field[@name='duration_expected']" position="after">
+                <field name="is_user_working" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit kanban view untuk add is_user_working field -->
+    <record id="workcenter_line_kanban_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.work.order.kanban.inherit</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.workcenter_line_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="is_user_working" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
