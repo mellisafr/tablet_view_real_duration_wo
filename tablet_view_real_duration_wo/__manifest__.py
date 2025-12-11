@@ -18,6 +18,8 @@
     """,
     'author': 'Mellisa FR',
     'website': 'https://www.linkedin.com/in/mellisafr/',
+    'license': 'LGPL-3',
+    'images': ['static/description/cover.png'],
     'depends': ['mrp', 'mrp_workorder'],
     'data': [
         'views/mrp_workorder_views.xml',
@@ -25,5 +27,4 @@
     'installable': True,
     'application': False,
     'auto_install': False,
-    'license': 'LGPL-3'
 }
