@@ -18,7 +18,7 @@
     """,
     'author': 'Mellisa FR',
     'website': 'https://www.linkedin.com/in/mellisafr/',
-    'license': 'LGPL-3',
+    'license': 'OPL-1',
     'images': ['static/description/cover.png'],
     'depends': ['mrp', 'mrp_workorder'],
     'data': [
