@@ -75,7 +75,7 @@ This module uses computed fields with `@api.depends` that automatically trigger 
 ## Version
 - **Odoo Version:** 16.0
 - **Module Version:** 1.0
-- **License:** LGPL-3
+- **License:** OPL-1
 
 ## Author
 **Mellisa FR**
